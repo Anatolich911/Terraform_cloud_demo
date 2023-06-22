@@ -3,6 +3,12 @@ variable "region" {
   type        = string
   default     = ""
 }
+}
+variable "azs" {
+  description = "please provide a az information"
+  type        = list(any)
+  default     = [""]
+}
 
 variable "cidr_block" {
   description = "please provide a cidr_block information"
