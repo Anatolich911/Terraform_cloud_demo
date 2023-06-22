@@ -59,7 +59,7 @@ resource "aws_rds_cluster" "db_instance" {
 resource "aws_security_group" "database_sg" {
   name        = "database-sg"
   description = "Allow MySQL access from EC2 instance"
-  vpc_id      = aws_vpc.Project.id
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   ingress {
     from_port   = 3306
@@ -79,7 +79,7 @@ resource "aws_autoscaling_group" "wordpress_asg" {
   health_check_type   = "ELB"
   desired_capacity    = 1
   target_group_arns   = [aws_alb_target_group.project-tg.arn]
-  vpc_zone_identifier = [aws_subnet.public1.id, aws_subnet.public2.id, aws_subnet.public3.id]
+  vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.public_subnets
   launch_template {
     id      = aws_launch_template.my_launch_template.id
     version = "$Latest"
