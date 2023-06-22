@@ -1,5 +1,5 @@
 
-region = "us-east-1"
+
 public_subnet_cidr_blocks = [
     "10.0.101.0/24",
     "10.0.102.0/24", 
@@ -12,10 +12,6 @@ private_subnet_cidr_blocks = [
 ]
 
 IP = "0.0.0.0/0"
-
-
-path_to_public_key  = "/home/ec2-user/.ssh/id_rsa.pub"
-path_to_private_key = "/home/ec2-user/.ssh/id_rsa"
 
 region              = "us-east-1"
 path_to_public_key  = "/home/ec2-user/.ssh/id_rsa.pub"
