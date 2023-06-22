@@ -86,11 +86,7 @@ variable "sec_group_name" {
   default     = ""
 }
 
-variable "path_to_public_key" {
-  description = "public key location on terraform instance"
-  type        = string
-  default     = ""
-}
+
 
 
 
