@@ -1,3 +1,17 @@
+data "terraform_remote_state" "vpc" {
+  backend = "remote"
+
+  config = {
+    organization = "shtyrka"
+    workspaces = {
+      name = "vpc"
+    }
+  }
+}
+
+
+
+
 #1 Find AMI Linux-2
 
 data "aws_ami" "amazon-2" {
@@ -13,12 +27,12 @@ data "aws_ami" "amazon-2" {
 
 # 2. Create VM 
 resource "aws_instance" "wordpress" {
-  availability_zone      = var.availability_zone
+  availability_zone      = var.azs
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.my_sg.id]
   key_name               = aws_key_pair.project_keypair.key_name
-  subnet_id              = aws_subnet.public1.id
+  subnet_id              = data.terraform_remote_state.vpc.otputs.private_subnets
 
   tags = {
     "Name" : "wordpress_for_ami"
@@ -52,4 +66,8 @@ resource "aws_instance" "wordpress" {
       "sudo sed  -i 's/password_here/${var.master_password}/g' /var/www/html/wp-config.php"
     ]
   }
+}
+resource "aws_key_pair" "project_keypair" {
+  key_name   = "project_keypair"
+  public_key = file(var.path_to_public_key)
 }

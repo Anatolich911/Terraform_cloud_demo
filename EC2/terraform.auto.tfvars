@@ -21,3 +21,5 @@ azs = [
     "us-east-1b",
     "us-east-1c"
 ]
+path_to_public_key  = "/home/ec2-user/.ssh/id_rsa.pub"
+path_to_private_key = "/home/ec2-user/.ssh/id_rsa"

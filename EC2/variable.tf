@@ -71,3 +71,9 @@ variable "master_password" {
   type        = string
   default     = ""
 }
+
+variable "path_to_public_key" {
+  description = "public key location on terraform instance"
+  type        = string
+  default     = ""
+}

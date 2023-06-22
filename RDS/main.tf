@@ -1,3 +1,22 @@
+
+data "terraform_remote_state" "vpc" {
+  backend = "remote"
+
+  config = {
+    organization = "shtyrka"
+    workspaces = {
+      name = "vpc"
+    }
+  }
+}
+
+
+
+
+
+
+
+
 #Create subnet group for RDS
 resource "aws_db_subnet_group" "project_db_subnet_group" {
   name       = "project_db_subnet_group"
