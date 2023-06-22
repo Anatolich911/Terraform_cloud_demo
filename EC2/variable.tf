@@ -79,17 +79,6 @@ variable "region" {
   default     = ""
 }
 
-variable "azs" {
-  description = "please provide a az information"
-  type        = list(any)
-  default     = [""]
-}
-
-variable "cidr_block" {
-  description = "please provide a cidr_block information"
-  type        = string
-  default     = ""
-}
 
 variable "sec_group_name" {
   description = "please provide a sec_group_name information"
@@ -103,11 +92,7 @@ variable "path_to_public_key" {
   default     = ""
 }
 
-variable "path_to_private_key" {
-  description = "private key location on terraform instance"
-  type        = string
-  default     = ""
-}
+
 
 variable "instance_username" {
   description = "user to ssh to remote host"
@@ -133,23 +118,6 @@ variable "database_name" {
   default     = ""
 }
 
-variable "cluster_identifier" {
-  description = "cluster identifier of RDS database"
-  type        = string
-  default     = ""
-}
-
-variable "master_username" {
-  description = "username for RDS database"
-  type        = string
-  default     = ""
-}
-
-variable "master_password" {
-  description = "password for RDS database"
-  type        = string
-  default     = ""
-}
 
 
 
