@@ -28,7 +28,8 @@ module "asg" {
   launch_template_description = "Launch template example"
   update_default_version      = true
 
-  image_id          = "ami-ebd02392"
+  image_id          = aws_launch_template.my_launch_template.id
+  version = "$Latest"
   instance_type     = "t3.micro"
   ebs_optimized     = true
   enable_monitoring = true
@@ -38,16 +39,7 @@ module "asg" {
 
 
 
-  launch_template {
-    id      = aws_launch_template.my_launch_template.id
-    version = "$Latest"
-  }
-  tag {
-    key                 = "Name"
-    value               = "asginstance"
-    propagate_at_launch = true
-  }
-}
+
 resource "aws_autoscaling_policy" "scale_up" {
   name                   = "scale_up"
   policy_type            = "SimpleScaling"
