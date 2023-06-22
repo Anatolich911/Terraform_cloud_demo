@@ -33,11 +33,7 @@ module "asg" {
   instance_type     = "t3.micro"
   ebs_optimized     = true
   enable_monitoring = true
-
-
-
-
-
+}
 
 
 resource "aws_autoscaling_policy" "scale_up" {
