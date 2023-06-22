@@ -8,7 +8,16 @@ data "terraform_remote_state" "vpc" {
     }
   }
 }
+data "terraform_remote_state" "rds" {
+  backend = "remote"
 
+  config = {
+    organization = "shtyrka"
+    workspaces = {
+      name = "RDS"
+    }
+  }
+}
 
 
 
@@ -30,7 +39,7 @@ resource "aws_instance" "wordpress" {
   availability_zone      = var.azs
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.my_sg.id]
+  vpc_security_group_ids = aws_security_group.my_sg.id
   key_name               = aws_key_pair.project_keypair.key_name
   subnet_id              = data.terraform_remote_state.vpc.outputs.private_subnets
 
@@ -77,11 +86,11 @@ resource "aws_key_pair" "project_keypair" {
 resource "aws_launch_template" "my_launch_template" {
 
   name          = "my_launch_template"
-  image_id      = aws_ami_from_instance.wordpress.id
+  image_id      = aws_instance.wordpress.id
   instance_type = "t2.micro"
   key_name      = aws_key_pair.project_keypair.id
   network_interfaces {
     associate_public_ip_address = true
-    security_groups             = [aws_security_group.my_sg.id]
+    security_groups  = aws_security_group.my_sg.id
   }
 }
