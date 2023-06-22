@@ -88,6 +88,14 @@ variable "sec_group_name" {
 
 
 
+variable "path_to_private_key" {
+  description = "private key location on terraform instance"
+  type        = string
+  default     = ""
+}
+
+
+
 
 
 variable "instance_username" {
