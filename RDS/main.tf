@@ -51,20 +51,7 @@ resource "aws_rds_cluster" "db_instance" {
   db_subnet_group_name   = aws_db_subnet_group.project_db_subnet_group.id
 }
 
-#Create security group for RDS
 
-resource "aws_security_group" "database_sg" {
-  name        = "database-sg"
-  description = "Allow MySQL access from EC2 instance"
-  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
-
-  ingress {
-    from_port   = 3306
-    to_port     = 3306
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-
-  }
 }
 
 
