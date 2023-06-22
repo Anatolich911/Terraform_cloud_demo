@@ -46,7 +46,7 @@ resource "aws_rds_cluster" "db_instance" {
   database_name          = var.database_name
   master_username        = var.master_username
   master_password        = var.master_password
-  vpc_security_group_ids = [aws_security_group.database_sg.id]
+  vpc_security_group_ids = [aws_security_group.my_sg.id]
   skip_final_snapshot    = true
   db_subnet_group_name   = aws_db_subnet_group.project_db_subnet_group.id
 }
