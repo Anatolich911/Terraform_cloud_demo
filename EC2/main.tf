@@ -36,7 +36,7 @@ data "aws_ami" "amazon-2" {
 
 # 2. Create VM 
 resource "aws_instance" "wordpress" {
-  availability_zone      = var.azs
+  availability_zone      = var.availability_zone
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
   vpc_security_group_ids = data.terraform_remote_state.vpc.outputs.default_security_group_ids
