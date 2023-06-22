@@ -34,7 +34,7 @@ data "aws_ami" "amazon-2" {
 }
 
 
-# 2. Create VM 
+# 2. Createh VM 
 resource "aws_instance" "wordpress" {
   availability_zone      = var.availability_zone
   ami                    = data.aws_ami.amazon-2.id

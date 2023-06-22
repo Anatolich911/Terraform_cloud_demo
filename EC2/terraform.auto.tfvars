@@ -14,8 +14,8 @@ private_subnet_cidr_blocks = [
 IP = "0.0.0.0/0"
 
 region              = "us-east-1"
-path_to_public_key  = "/home/ec2-user/.ssh/id_rsa.pub"
-path_to_private_key = "/home/ec2-user/.ssh/id_rsa"
+path_to_public_key  = "~/.ssh/id_rsa.pub"
+path_to_private_key = "~/.ssh/id_rsa"
 instance_username   = "ec2-user"
 cidr_block          = "10.0.0.0/16"
 sec_group_name      = "my_sg"
