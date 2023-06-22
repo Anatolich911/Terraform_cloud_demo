@@ -9,6 +9,25 @@ data "terraform_remote_state" "vpc" {
     }
   }
 }
+
+data "terraform_remote_state" "EC2" {
+  backend = "remote"
+
+  config = {
+    organization = "shtyrka"
+    workspaces = {
+      name = "EC2"
+    }
+  }
+}
+
+
+
+
+
+
+
+
 module "asg" {
   source  = "terraform-aws-modules/autoscaling/aws"
 
