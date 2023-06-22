@@ -1,3 +1,21 @@
+
+data "terraform_remote_state" "vpc" {
+  backend = "remote"
+
+  config = {
+    organization = "shtyrka"
+    workspaces = {
+      name = "vpc"
+    }
+  }
+}
+
+
+
+
+
+
+
 # Create ASG
 
 resource "aws_autoscaling_group" "wordpress_asg" {
@@ -7,7 +25,7 @@ resource "aws_autoscaling_group" "wordpress_asg" {
   health_check_type   = "ELB"
   desired_capacity    = 1
   target_group_arns   = [aws_alb_target_group.project-tg.arn]
-  vpc_zone_identifier = [aws_subnet.public1.id, aws_subnet.public2.id, aws_subnet.public3.id]
+  vpc_zone_identifier = data.terraform_remote_state.vpc.output.public_subnets
   launch_template {
     id      = aws_launch_template.my_launch_template.id
     version = "$Latest"
@@ -43,7 +61,7 @@ resource "aws_alb" "application-lb" {
   ip_address_type    = "ipv4"
   load_balancer_type = "application"
   security_groups    = [aws_security_group.my_sg.id]
-  subnets            = [aws_subnet.public1.id, aws_subnet.public2.id, aws_subnet.public3.id]
+  subnets            = data.terraform_remote_state.vpc.output.public_subnets
 }
 
 # Target group
@@ -53,7 +71,7 @@ resource "aws_alb_target_group" "project-tg" {
   port        = 80
   protocol    = "HTTP"
   target_type = "instance"
-  vpc_id      = aws_vpc.Project.id
+  vpc_id      = data.terraform_remote_state.vpc.output.vpc_id
 
   health_check {
     interval            = 30
