@@ -70,7 +70,7 @@ resource "aws_instance" "wordpress" {
       "sudo chown -R apache:apache /var/www/html/",
       "sudo mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php",
       "sudo sed -i 's/username_here/${var.master_username}/g' /var/www/html/wp-config.php",
-      "sudo sed -i 's/localhost/${aws_rds_cluster.db_instance.endpoint}/g' /var/www/html/wp-config.php",
+      "sudo sed -i 's/localhost/${data.terraform_remote_state.rds.outputs.db_listener_endpoint}/g' /var/www/html/wp-config.php",
       "sudo sed  -i 's/database_name_here/${var.database_name}/g' /var/www/html/wp-config.php",
       "sudo sed  -i 's/password_here/${var.master_password}/g' /var/www/html/wp-config.php"
     ]
