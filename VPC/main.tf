@@ -25,7 +25,7 @@ module "vpc" {
 resource "aws_security_group" "my_sg" {
   name        = "my_sg"
   description = "Allow incoming HTTP Connections"
-  vpc_id      = aws_vpc.Project.id
+  vpc_id      = module.vpc.vpc_id
 
   ingress {
     from_port   = 80
