@@ -29,7 +29,7 @@ module "asg" {
   update_default_version      = true
 
   image_id          = aws_launch_template.my_launch_template.id
-  version = "$Latest"
+
   instance_type     = "t3.micro"
   ebs_optimized     = true
   enable_monitoring = true
