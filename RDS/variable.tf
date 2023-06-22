@@ -3,7 +3,7 @@ variable "region" {
   type        = string
   default     = ""
 }
-}
+
 variable "azs" {
   description = "please provide a az information"
   type        = list(any)
