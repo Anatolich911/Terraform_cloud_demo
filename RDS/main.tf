@@ -52,7 +52,7 @@ resource "aws_rds_cluster" "db_instance" {
 }
 
 
-}
+
 
 
 
