@@ -56,7 +56,7 @@ resource "aws_rds_cluster_instance" "reader_instances" {
 resource "aws_rds_cluster" "db_instance" {
   cluster_identifier     = var.cluster_identifier
   engine                 = "aurora-mysql"
-  availability_zones     = var.availability_zones
+  availability_zones     = var.azs
   database_name          = var.database_name
   master_username        = var.master_username
   master_password        = var.master_password
