@@ -60,8 +60,8 @@ resource "aws_alb" "application-lb" {
   internal           = false
   ip_address_type    = "ipv4"
   load_balancer_type = "application"
-  security_groups    = [data.terraform_remote_state.vpc.aws_security_group.my_sg.id]
-  subnets            = data.terraform_remote_state.vpc.outputs.public_subnets
+  security_groups    = [aws_security_group.asg-sec-group.id]
+  subnets            = data.aws.availability_zones.all.names
 }
 
 # Target group
