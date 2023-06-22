@@ -9,23 +9,35 @@ data "terraform_remote_state" "vpc" {
     }
   }
 }
+module "asg" {
+  source  = "terraform-aws-modules/autoscaling/aws"
+
+  # Autoscaling group
+  name = "example-asg"
+
+  min_size                  = 0
+  max_size                  = 1
+  desired_capacity          = 1
+  wait_for_capacity_timeout = 0
+  health_check_type         = "EC2"
+  vpc_zone_identifier       = data.terraform_remote_state.vpc.outputs.public_subnets
+
+
+  # Launch template
+  launch_template_name        = "example-asg"
+  launch_template_description = "Launch template example"
+  update_default_version      = true
+
+  image_id          = "ami-ebd02392"
+  instance_type     = "t3.micro"
+  ebs_optimized     = true
+  enable_monitoring = true
 
 
 
 
 
 
-
-# Create ASG
-
-resource "aws_autoscaling_group" "wordpress_asg" {
-  name                = "wordpress_asg"
-  max_size            = 99
-  min_size            = 1
-  health_check_type   = "ELB"
-  desired_capacity    = 1
-  target_group_arns   = [aws_alb_target_group.project-tg.arn]
-  vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.public_subnets
   launch_template {
     id      = aws_launch_template.my_launch_template.id
     version = "$Latest"
