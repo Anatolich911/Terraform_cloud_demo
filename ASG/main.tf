@@ -25,7 +25,7 @@ resource "aws_autoscaling_group" "wordpress_asg" {
   health_check_type   = "ELB"
   desired_capacity    = 1
   target_group_arns   = [aws_alb_target_group.project-tg.arn]
-  vpc_zone_identifier = data.terraform_remote_state.vpc.output.public_subnets
+  vpc_zone_identifier = data.terraform_remote_state.vpc.outputs.public_subnets
   launch_template {
     id      = aws_launch_template.my_launch_template.id
     version = "$Latest"
@@ -60,8 +60,8 @@ resource "aws_alb" "application-lb" {
   internal           = false
   ip_address_type    = "ipv4"
   load_balancer_type = "application"
-  security_groups    = [aws_security_group.my_sg.id]
-  subnets            = data.terraform_remote_state.vpc.output.public_subnets
+  security_groups    = [data.terraform_remote_state.vpc.aws_security_group.my_sg.id]
+  subnets            = data.terraform_remote_state.vpc.outputs.public_subnets
 }
 
 # Target group
@@ -71,7 +71,7 @@ resource "aws_alb_target_group" "project-tg" {
   port        = 80
   protocol    = "HTTP"
   target_type = "instance"
-  vpc_id      = data.terraform_remote_state.vpc.output.vpc_id
+  vpc_id      = data.terraform_remote_state.vpc.outputs.vpc_id
 
   health_check {
     interval            = 30
