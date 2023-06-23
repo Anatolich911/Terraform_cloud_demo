@@ -140,3 +140,4 @@ variable "public_subnet1" {
   description = "provide sub id"
   type = string
   default = ""
+}  
