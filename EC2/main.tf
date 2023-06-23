@@ -91,6 +91,6 @@ resource "aws_launch_template" "my_launch_template" {
   key_name      = aws_key_pair.project_keypair.id
   network_interfaces {
     associate_public_ip_address = true
-    security_groups  = data.terraform_remote_state.vpc.outputs.default_security_group_ids
+    
   }
 }
