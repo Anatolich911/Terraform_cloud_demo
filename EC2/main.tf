@@ -78,7 +78,7 @@ resource "aws_instance" "wordpress" {
 }
 resource "aws_key_pair" "project_keypair" {
   key_name   = "project_keypair"
-  public_key = file(var.path_to_public_key)
+  public_key = "~/.ssh/id_rsa.pub"
 }
 
 # Launch template
