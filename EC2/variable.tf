@@ -136,3 +136,7 @@ variable "zone_id" {
   type = string
   default = ""
 } 
+variable "public_subnet1" {
+  description = "provide sub id"
+  type = string
+  default = ""
