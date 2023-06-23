@@ -40,7 +40,7 @@ resource "aws_instance" "wordpress" {
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
   
-  key_name               = aws_key_pair.project_keypair.key_name
+  
   subnet_id              = var.public_subnet1
 
   tags = {
