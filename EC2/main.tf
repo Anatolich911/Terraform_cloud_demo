@@ -51,7 +51,7 @@ resource "aws_instance" "wordpress" {
   connection {
     type        = "ssh"
     user        = var.instance_username
-    private_key = file(var.path_to_private_key)
+    private_key = "~/.ssh/id_rsa.pub"
     host        = aws_instance.wordpress.public_ip
   }
 
