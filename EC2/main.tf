@@ -39,9 +39,9 @@ resource "aws_instance" "wordpress" {
   availability_zone      = var.availability_zone
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = data.terraform_remote_state.vpc.outputs.default_security_group_ids
+  vpc_security_group_ids = data.terraform_remote_state.vpc.outputs.aws_security_group
   key_name               = aws_key_pair.project_keypair.key_name
-  subnet_id              = data.terraform_remote_state.vpc.outputs.private_subnets
+  subnet_id              = var.private_subnet
 
   tags = {
     "Name" : "wordpress_for_ami"
