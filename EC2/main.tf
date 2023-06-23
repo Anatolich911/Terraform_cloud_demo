@@ -40,8 +40,6 @@ resource "aws_instance" "wordpress" {
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
   
-  
-  subnet_id              = var.public_subnet1
 
   tags = {
     "Name" : "wordpress_for_ami"
