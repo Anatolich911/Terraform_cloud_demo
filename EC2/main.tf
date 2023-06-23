@@ -41,7 +41,7 @@ resource "aws_instance" "wordpress" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = data.terraform_remote_state.vpc.outputs.aws_security_group
   key_name               = aws_key_pair.project_keypair.key_name
-  subnet_id              = var.private_subnet
+  subnet_id              = var.private_subnet1
 
   tags = {
     "Name" : "wordpress_for_ami"
