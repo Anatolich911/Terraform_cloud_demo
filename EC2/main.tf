@@ -77,7 +77,7 @@ resource "aws_instance" "wordpress" {
   }
 }
 
-d
+
 # Launch template
 
 resource "aws_launch_template" "my_launch_template" {
