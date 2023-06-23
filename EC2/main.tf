@@ -39,7 +39,7 @@ resource "aws_instance" "wordpress" {
   availability_zone      = var.availability_zone
   ami                    = data.aws_ami.amazon-2.id
   instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.my_sg.id]
+  vpc_security_group_ids = aws_security_group.my_sg.id
   key_name               = aws_key_pair.project_keypair.key_name
   subnet_id              = var.public_subnet1
 
