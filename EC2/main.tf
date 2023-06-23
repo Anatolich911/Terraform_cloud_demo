@@ -76,10 +76,7 @@ resource "aws_instance" "wordpress" {
     ]
   }
 }
-resource "aws_key_pair" "project_keypair" {
-  key_name   = "project_keypair"
-  public_key = "~/.ssh/id_rsa.pub"
-}
+
 
 # Launch template
 
