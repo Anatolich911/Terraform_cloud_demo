@@ -9,11 +9,3 @@ output  vpc_id {
     value = module.vpc.vpc_id
 }
 
-
-output  aws_security_group {
-    value = module.vpc.owner_id
-}
-
-output  private_subnet {
-    value = module.vpc.private_subnet
-}
