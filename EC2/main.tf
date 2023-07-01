@@ -49,7 +49,7 @@ resource "aws_instance" "wordpress" {
   connection {
     type        = "ssh"
     user        = var.instance_username
-    private_key = file(var.path_to_private_key)
+    private_key = var.path_to_private_key
     host        = aws_instance.wordpress.public_ip
   }
 
@@ -94,5 +94,5 @@ resource "aws_launch_template" "my_launch_template" {
 
 resource "aws_key_pair" "project_keypair" {
   key_name   = "project_keypair"
-  public_key = file(var.path_to_public_key)
+  public_key = var.path_to_public_key
 }
