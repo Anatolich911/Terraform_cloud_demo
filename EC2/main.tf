@@ -46,12 +46,6 @@ resource "aws_instance" "wordpress" {
   }
 
 
-  connection {
-    type        = "ssh"
-    user        = var.instance_username
-    private_key = var.path_to_public_key
-    host        = aws_instance.wordpress.public_ip
-  }
 
   provisioner "remote-exec" {
 
